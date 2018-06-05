@@ -2,6 +2,7 @@ package com.moesystems.gamenews.Entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -18,17 +19,18 @@ public class User {
     private String username;
     @ColumnInfo(name = "password")
     private String password;
+    @Ignore
     @ColumnInfo(name = "favoriteNews")
-    private List<String> favorite;
+    private List<String> favorite =null;
 
     public User() {
     }
 
-    public User(@NonNull String id, String username, String password, List<String> favorite) {
+    public User(@NonNull String id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.favorite = favorite;
+
     }
 
     @NonNull
@@ -60,7 +62,7 @@ public class User {
         return favorite;
     }
 
-    public void setFavorite(List<String> favorite) {
-        this.favorite = favorite;
+    public void setFavorite(String favorite) {
+        this.favorite.add(favorite);
     }
 }
