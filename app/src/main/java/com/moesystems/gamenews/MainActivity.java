@@ -1,10 +1,12 @@
 package com.moesystems.gamenews;
 
-import android.content.Intent;
+import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,11 +17,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.moesystems.gamenews.API.Token;
+import com.moesystems.gamenews.Adapters.RecycleViewAdapterNews;
+import com.moesystems.gamenews.Database.GameNewsRoomDatabase;
+import com.moesystems.gamenews.Entity.New;
+import com.moesystems.gamenews.Repository.GameNewsRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private Token token;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+  //  List<New> noticias;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,20 +37,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-      /*  Intent i = getIntent();
-                if(i!=null) {
-                        token = i.getParcelableExtra("SECURITY_TOKEN");
-                        Log.d("TOKEN",token.getToken());
-                    }
-*/
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -50,6 +46,28 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+       // noticias = new ArrayList<>();
+        recyclerView =  findViewById(R.id.Recyclerview);
+        /////////////////////////////////
+        GameNewsRoomDatabase db = Room.databaseBuilder(getApplicationContext(),GameNewsRoomDatabase.class,"gamenews_database")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+
+        List<New> noticias = db.newDAO().getAllNews();
+
+//        noticias =  new ArrayList<>();
+//        for (int i=0;i<=10;i++){
+//            New noticia = new New(null,"CSGO!",null,null,null,null,null);
+//            noticias.add(noticia);
+//        }
+        db.newDAO().deleteAllNews();
+        New news =  new New("RIP GAMBLING",null,null,"lel","lorem impsum","csgo");
+        db.newDAO().insertNew(news);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new RecycleViewAdapterNews(noticias);
+        recyclerView.setAdapter(adapter);
+
+
     }
 
     @Override

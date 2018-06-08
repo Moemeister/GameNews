@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.moesystems.gamenews.API.GamenewsAPI;
 import com.moesystems.gamenews.Data.Post;
@@ -56,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.body().toString()!=null){
                         Intent intent =  new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"USUARIO DESCONOCIDO", Toast.LENGTH_SHORT).show();
                     }
                     Log.i("LELELELELedede", "post submitted to API." + response.body().toString());
                 }
@@ -64,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
                 Log.e("LELELELEL", "Unable to submit post to API.");
+
             }
         });
     }
