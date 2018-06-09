@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
+    int cant;
   //  List<New> noticias;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,32 @@ public class MainActivity extends AppCompatActivity
         db.newDAO().deleteAllNews();
         New news =  new New("RIP GAMBLING",null,null,"lel","lorem impsum","csgo");
         db.newDAO().insertNew(news);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        news =  new New("xdxxdxd",null,null,"lel","lorem impsum","csgo");
+        db.newDAO().insertNew(news);
+        news =  new New(":v:VV:v:VV:v:VV:v",null,null,"lel","lorem impsum","csgo");
+        db.newDAO().insertNew(news);
+        news =  new New("alv",null,null,"lel","lorem impsum","csgo");
+        db.newDAO().insertNew(news);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 6);
+
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                //35 is the sum of items in one repeated section
+                switch (position % 3) {
+                    // first item span 6 columns each
+                    case 0:
+                        return 6;
+                    // next 2 items span 3 columns each
+                    case 1:
+                    case 2:
+                        return 3;
+                }
+                throw new IllegalStateException("internal error");
+            }
+        });
+        recyclerView.setLayoutManager(layoutManager);
         adapter = new RecycleViewAdapterNews(noticias);
         recyclerView.setAdapter(adapter);
 
