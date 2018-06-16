@@ -25,11 +25,12 @@ public class LoginActivity extends AppCompatActivity {
     GamenewsAPI  api;
     EditText txtUser,txtPass;
     Button btnLogin;
+    Post post;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        post = new Post();
         txtUser =  findViewById(R.id.txtUser);
         txtPass =  findViewById(R.id.txtPass);
         btnLogin =  findViewById(R.id.btn_login);
@@ -56,10 +57,12 @@ public class LoginActivity extends AppCompatActivity {
                     showResponse(response.body().toString());
                     if (response.body().toString()!=null){
                         Intent intent =  new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtra("TOKEN", response.body().toString());
                         startActivity(intent);
                     }else{
                         Toast.makeText(getApplicationContext(),"USUARIO DESCONOCIDO", Toast.LENGTH_SHORT).show();
                     }
+                    Log.i("LELELELELedede", "post submitted to API." + response.body().toString());
                     Log.i("LELELELELedede", "post submitted to API." + response.body().toString());
                 }
             }

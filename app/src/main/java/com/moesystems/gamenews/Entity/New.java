@@ -13,7 +13,7 @@ public class New {
     private int id;
     private String title;
     private String coverImage;
-    @ColumnInfo(name = "cerate_date")
+    @ColumnInfo(name = "create_date")
     private String createDate;
     private String description;
     private String body;
@@ -23,7 +23,6 @@ public class New {
     }
 
     public New( String title, String coverImage, String createDate, String description, String body, String game) {
-        this.id = id;
         this.title = title;
         this.coverImage = coverImage;
         this.createDate = createDate;

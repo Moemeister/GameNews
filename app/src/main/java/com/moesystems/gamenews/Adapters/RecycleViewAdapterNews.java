@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.moesystems.gamenews.Entity.New;
 import com.moesystems.gamenews.R;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -21,11 +22,15 @@ public class RecycleViewAdapterNews extends RecyclerView.Adapter<RecycleViewAdap
 
     private Context mContext;
     private List<New> noticia;
+    private New[] noticia2;
     private LayoutInflater mInflater;
 
 
     public RecycleViewAdapterNews(List<New> noticia) {
         this.noticia = noticia;
+    }
+    public RecycleViewAdapterNews(New[] noticia2) {
+        this.noticia2 = noticia2;
     }
 
     @NonNull
@@ -43,11 +48,17 @@ public class RecycleViewAdapterNews extends RecyclerView.Adapter<RecycleViewAdap
         //New mNew = noticia.get(position);
        // holder.title.setText(mNew.getTitle());
         holder.title.setText(noticia.get(position).getTitle());
+        //holder.title.setText(noticia2[position].getTitle());
+        Picasso.get()
+                .load(noticia.get(position).getCoverImage())
+                .fit()
+                .into(holder.gameimg);
 
     }
 
     @Override
     public int getItemCount() {
+        //return noticia2.length;
         return noticia.size();
     }
 
@@ -57,7 +68,12 @@ public class RecycleViewAdapterNews extends RecyclerView.Adapter<RecycleViewAdap
         public MyViewHodler(View itemView){
             super(itemView);
             title = itemView.findViewById(R.id.txt_title);
+            gameimg =  itemView.findViewById(R.id.img_game);
 
         }
+    }
+    public void noticiaaas (List<New> news){
+        noticia = news;
+
     }
 }

@@ -13,7 +13,7 @@ import com.moesystems.gamenews.DAOs.UserDAO;
 import com.moesystems.gamenews.Entity.New;
 import com.moesystems.gamenews.Entity.User;
 
-@Database(entities = {New.class}, version = 2)
+@Database(entities = {New.class}, version = 3)
 public abstract class GameNewsRoomDatabase extends RoomDatabase {
     public abstract NewDAO newDAO();
     private static GameNewsRoomDatabase INSTANCE;
