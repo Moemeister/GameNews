@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         api= Utils.getAPIService();
-        String hola = "xdxdx xdxdxd xdxdxdxdxdx";
-        Log.d("xd",hola.replaceAll(" ",""));
         String getToken = getIntent().getStringExtra("TOKEN");
         loadNews(getToken.replaceAll(" ",""));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -117,7 +115,7 @@ public class MainActivity extends AppCompatActivity
                 if(response.isSuccessful()) {
                     noticias= response.body();
                     //mResponseTv.setText(news[0].getTitle());
-                    recyclerView.setAdapter(new RecycleViewAdapterNews(noticias));
+                    recyclerView.setAdapter(new RecycleViewAdapterNews(getApplicationContext(),noticias));
 
 
                     Log.d("MainActivity", "posts loaded from API");
