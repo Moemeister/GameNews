@@ -3,35 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/dark"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     android:gravity="center"
     tools:context=".LoginActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user: "/>
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        android:textSize="30sp"
+        android:text="Iniciar Sesión"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Username: "/>
     <EditText
         android:id="@+id/txtUser"
         android:inputType="text"
         android:layout_width="match_parent"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/white"
+        android:layout_marginRight="50dp"
         android:layout_height="wrap_content"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pass: "/>
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:text="Password: "/>
     <EditText
         android:id="@+id/txtPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:inputType="textPassword"
         />
     <Button
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorAccent"
         android:layout_height="wrap_content"
-        android:text="LOGIN"/>
+        android:textSize="25sp"
+        android:textAllCaps="false"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+
+        android:text="Login"/>
 
 </LinearLayout>

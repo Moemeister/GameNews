@@ -95,7 +95,7 @@ public class RecycleViewAdapterNews extends RecyclerView.Adapter<RecycleViewAdap
             cardview =  itemView.findViewById(R.id.new_cardview);
             desc = itemView.findViewById(R.id.desc);
             body =  itemView.findViewById(R.id.body);
-            game =  itemView.findViewById(R.id.juego);
+            //game =  itemView.findViewById(R.id.juego);
 
 
         }
