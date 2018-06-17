@@ -62,14 +62,14 @@ public class LoginActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(getApplicationContext(),"USUARIO DESCONOCIDO", Toast.LENGTH_SHORT).show();
                     }
-                    Log.i("LELELELELedede", "post submitted to API." + response.body().toString());
-                    Log.i("LELELELELedede", "post submitted to API." + response.body().toString());
+                    Log.i("Mensaje1", "post submitted to API." + response.body().toString());
+                    Log.i("Mensaje2", "post submitted to API." + response.body().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
-                Log.e("LELELELEL", "Unable to submit post to API.");
+                Log.e("TAG", "Unable to submit post to API.");
 
             }
         });
